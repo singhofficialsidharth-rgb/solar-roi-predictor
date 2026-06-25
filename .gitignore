@@ -1,0 +1,7 @@
+# Ignore the node_modules folder
+node_modules/
+
+# Ignore security and environment files
+.env
+.env.local
+*.pem
