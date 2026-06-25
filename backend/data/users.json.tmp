@@ -1,0 +1,9 @@
+[
+  {
+    "_id": "824aa147-b744-45c2-817d-426edd24564f",
+    "name": "Codex Test",
+    "email": "codex-test-a420d4dd5c134e9b9e36790052c8a097@example.com",
+    "password": "$2b$10$a599AD5ged58V24hjHnXde3HsGHmlC/qop9fYPjV8rKKc9PzHGd1G",
+    "createdAt": "2026-06-24T16:23:11.152Z"
+  }
+]

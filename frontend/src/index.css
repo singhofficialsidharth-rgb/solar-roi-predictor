@@ -1,0 +1,65 @@
+:root {
+  /* Light Mode Theme */
+  --text: #555555;
+  --text-h: #111827;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  
+  /* Solar ROI Brand Colors */
+  --accent: #4CAF50; 
+  --accent-bg: rgba(76, 175, 80, 0.1);
+  --accent-border: rgba(76, 175, 80, 0.5);
+  --danger: #ff4d4d;
+  --info: #1976d2;
+  
+  --shadow: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
+
+  /* Typography */
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --heading: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  font: 16px/1.5 var(--sans);
+  letter-spacing: 0.2px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Theme (Matches the Solar Dashboard) */
+    --text: #aaaaaa;
+    --text-h: #ffffff;
+    --bg: #1e1e24; /* Dashboard main background */
+    --card-bg: #2c2f33; /* Component backgrounds */
+    --border: #444444;
+    
+    --accent: #4CAF50;
+    --accent-bg: rgba(76, 175, 80, 0.15);
+    --accent-border: rgba(76, 175, 80, 0.5);
+    --danger: #ff4d4d;
+    --info: #1976d2;
+    
+    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+}
+
+/* Global Reset to ensure dashboard takes full width */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cleaner focus states for inputs and buttons */
+input:focus, select:focus, button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-border);
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "cd69ea92-2181-4472-bfce-5f0ddfb112aa",
+    "name": "Codex Test",
+    "email": "codex-test-15d058e4a6d1464281e557d628ee6d8c@example.com",
+    "password": "$2b$10$XBNbWpJDXNzVvHF1dF43DOISa7d2cFbmM7e92QsnB0gkEIG2XIxAC",
+    "createdAt": "2026-06-24T16:24:11.463Z"
+  },
+  {
+    "_id": "6cc3f2e9-a5be-49fc-8d33-4315ec549bdf",
+    "name": "Codex Test",
+    "email": "codex-test-734b852c59b9457ea30912b9fcead472@example.com",
+    "password": "$2b$10$7PPI.fMEU27mHsSJ9o2KsO/y78H00QOMS2iL4Tk7Qv5j1dEt/2M5m",
+    "createdAt": "2026-06-24T16:25:32.890Z"
+  },
+  {
+    "_id": "8b00c44d-42de-41ea-8df3-f959c23fbf92",
+    "name": "Sidharth Singh",
+    "email": "sk0701125@gmail.com",
+    "password": "$2b$10$3B6uRI5yJgqfMkHJZqyc9u7HnvfhHOBdfT1r1oWauAiiHqp89ktbq",
+    "createdAt": "2026-06-25T03:15:27.009Z"
+  },
+  {
+    "_id": "8c9830e9-b869-4c58-a9aa-6dc80b60e477",
+    "name": "Sidharth Singh Kushwah",
+    "email": "sidharth93104@gmail.com",
+    "password": "$2b$10$.0QHtFbEjtolbHLN2VzAeeklSNj9eBEAtV345qIxjfanP48/QaP6S",
+    "createdAt": "2026-06-25T03:22:57.785Z"
+  }
+]
