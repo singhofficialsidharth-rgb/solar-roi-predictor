@@ -12,6 +12,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// simple request logger to help debug route issues
+app.use((req, res, next) => {
+    try {
+        console.log('REQ', req.method, req.originalUrl);
+    } catch (e) {
+        // ignore
+    }
+    next();
+});
+
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));

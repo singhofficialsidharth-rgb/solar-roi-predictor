@@ -9,6 +9,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { forgotPassword, resetPassword } = useContext(AuthContext);
+
+  const [forgotMode, setForgotMode] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [resetCode, setResetCode] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [resetMessage, setResetMessage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +25,40 @@ export default function Login() {
       await register(name, email, password);
     } else {
       await login(email, password);
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleForgotRequest = async (e) => {
+    e.preventDefault();
+    setResetMessage(null);
+    setIsSubmitting(true);
+
+    const resp = await forgotPassword(forgotEmail);
+    if (resp?.ok) {
+      setResetMessage(resp.resetToken
+        ? `Reset code: ${resp.resetToken} (expires in ${resp.expiresInMinutes || 'a few'} minutes)`
+        : 'If that email exists, reset instructions were sent.'
+      );
+    } else {
+      setResetMessage(resp?.message || 'Could not start reset.');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleResetSubmit = async (e) => {
+    e.preventDefault();
+    setResetMessage(null);
+    setIsSubmitting(true);
+
+    const ok = await resetPassword(resetCode, newPassword);
+    if (ok) {
+      setResetMessage('Password reset succeeded — you are now signed in.');
+      setForgotMode(false);
+    } else {
+      setResetMessage('Could not reset password.');
     }
 
     setIsSubmitting(false);
@@ -165,6 +206,16 @@ export default function Login() {
                 fontSize: "16px",
               }}
             />
+            {!isRegistering && (
+              <div style={{ textAlign: 'right', marginTop: 6 }}>
+                <span
+                  onClick={() => { setForgotMode(true); setForgotEmail(email || ''); setResetMessage(null); }}
+                  style={{ color: '#4CAF50', cursor: 'pointer', fontSize: 13 }}
+                >
+                  Forgot password?
+                </span>
+              </div>
+            )}
           </div>
 
           <button
@@ -189,6 +240,53 @@ export default function Login() {
                 : "Sign In"}
           </button>
         </form>
+
+        {forgotMode && (
+          <div style={{ marginTop: 18, background: '#232428', padding: 12, borderRadius: 8 }}>
+            {!resetCode && (
+              <form onSubmit={handleForgotRequest} style={{ display: 'flex', gap: 8, flexDirection: 'column' }}>
+                <label style={{ color: '#aaa', fontSize: 14 }}>Enter your email to reset password</label>
+                <input
+                  type="email"
+                  required
+                  value={forgotEmail}
+                  onChange={(e) => setForgotEmail(e.target.value)}
+                  style={{ padding: 10, borderRadius: 6, border: '1px solid #444', background: '#1e1e24', color: '#fff' }}
+                />
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button type="submit" disabled={isSubmitting} style={{ background: '#4CAF50', color: '#fff', padding: '8px 12px', borderRadius: 6, border: 'none' }}>
+                    {isSubmitting ? 'Sending...' : 'Send reset'}
+                  </button>
+                  <button type="button" onClick={() => { setForgotMode(false); setResetMessage(null); }} style={{ padding: '8px 12px', borderRadius: 6 }}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {resetMessage && (
+              <div style={{ marginTop: 10, color: '#ddd', fontSize: 13 }}>{resetMessage}</div>
+            )}
+
+            {/** If resetToken was exposed in response, allow entering code+new password */}
+            {resetMessage && /Reset code:/.test(resetMessage) && (
+              <form onSubmit={handleResetSubmit} style={{ display: 'flex', gap: 8, flexDirection: 'column', marginTop: 10 }}>
+                <label style={{ color: '#aaa', fontSize: 14 }}>Reset Code</label>
+                <input value={resetCode} onChange={(e) => setResetCode(e.target.value)} style={{ padding: 10, borderRadius: 6, border: '1px solid #444', background: '#1e1e24', color: '#fff' }} />
+                <label style={{ color: '#aaa', fontSize: 14 }}>New Password</label>
+                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={{ padding: 10, borderRadius: 6, border: '1px solid #444', background: '#1e1e24', color: '#fff' }} />
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button type="submit" disabled={isSubmitting} style={{ background: '#4CAF50', color: '#fff', padding: '8px 12px', borderRadius: 6, border: 'none' }}>
+                    {isSubmitting ? 'Resetting...' : 'Reset Password'}
+                  </button>
+                  <button type="button" onClick={() => { setForgotMode(false); setResetMessage(null); }} style={{ padding: '8px 12px', borderRadius: 6 }}>
+                    Close
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        )}
 
         <p
           style={{

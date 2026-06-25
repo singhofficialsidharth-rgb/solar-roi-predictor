@@ -25,6 +25,35 @@
     "name": "Sidharth Singh Kushwah",
     "email": "sidharth93104@gmail.com",
     "password": "$2b$10$.0QHtFbEjtolbHLN2VzAeeklSNj9eBEAtV345qIxjfanP48/QaP6S",
-    "createdAt": "2026-06-25T03:22:57.785Z"
+    "createdAt": "2026-06-25T03:22:57.785Z",
+    "resetPasswordTokenHash": "b31657672a31a26b9fa702ec1fcacda21265709d19d10ac1f79a40be6409a1f9",
+    "resetPasswordExpiresAt": "2026-06-25T05:50:24.796Z",
+    "updatedAt": "2026-06-25T05:21:24.659Z",
+    "authProviders": [
+      "password"
+    ],
+    "failedLoginAttempts": 0,
+    "lockedUntil": null,
+    "lastLoginAt": "2026-06-25T05:21:24.659Z"
+  },
+  {
+    "_id": "a8728713-21d1-4b86-b016-65480273ab55",
+    "name": "TP",
+    "email": "test-reset@example.com",
+    "password": "$2b$10$0bqVpPjL6kQq7F4kVli1gOybaHGsPtwkmkgzIEmvus0uFUNNschpa",
+    "createdAt": "2026-06-25T05:11:24.671Z"
+  },
+  {
+    "_id": "5e363fb8-c276-41f8-84ac-83e49b065537",
+    "name": "X",
+    "email": "node-test@example.com",
+    "password": "$2b$10$kqwYcRnVlUe1A9QdIkBFte50FgLMj1Mz8CSIhH5gUMN67X0mWDydC",
+    "createdAt": "2026-06-25T05:13:07.620Z",
+    "resetPasswordTokenHash": "6136ac476f06b09b0eb9000bb1dcd12c746c0d2d716281dc3ad83e475d2f62e2",
+    "resetPasswordExpiresAt": "2026-06-25T05:49:00.865Z",
+    "updatedAt": "2026-06-25T05:19:00.866Z",
+    "authProviders": [
+      "password"
+    ]
   }
 ]

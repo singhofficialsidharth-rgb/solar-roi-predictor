@@ -7,6 +7,16 @@ const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/User');
 const localUserStore = require('../services/localUserStore');
 
+// Log incoming requests to this router for easier debugging
+router.use((req, res, next) => {
+  try {
+    console.log('AUTH REQ', req.method, req.path, 'ct=', req.headers['content-type']);
+  } catch (e) {
+    // ignore
+  }
+  next();
+});
+
 const JWT_SECRET = process.env.JWT_SECRET || 'solar-roi-dev-secret';
 const PASSWORD_MIN_LENGTH = 8;
 const MAX_LOGIN_ATTEMPTS = Number(process.env.MAX_LOGIN_ATTEMPTS || 5);

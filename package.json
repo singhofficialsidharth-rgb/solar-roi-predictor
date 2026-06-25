@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "cd backend && node server.js",
     "client": "cd frontend && npm run dev",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +18,8 @@
   "type": "commonjs",
   "devDependencies": {
     "concurrently": "^10.0.3"
+  },
+  "dependencies": {
+    "react-scripts": "^5.0.1"
   }
 }
